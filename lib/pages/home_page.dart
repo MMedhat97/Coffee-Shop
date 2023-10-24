@@ -38,6 +38,86 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: MyBottomNavBar(
         onTapChange: (index)=> navigateBottomBar(index),
       ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            )),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                //logo
+                DrawerHeader(
+                    child: Image.asset(
+                      'lib/images/coffeelogo.png',
+                      color: Colors.brown,
+                    )),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Divider(
+                    color: Colors.grey[800],
+                  ),
+                ),
+
+                //other pages
+                const Padding(
+                  padding:  EdgeInsets.only(left: 25.0),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.home,
+                      color: Colors.brown,
+                    ),
+                    title: Text('Home',
+                      style: TextStyle(color: Colors.brown),),
+
+                  ),
+                ),
+
+                const Padding(
+                  padding:  EdgeInsets.only(left: 25.0),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.info,
+                      color: Colors.brown,
+                    ),
+                    title: Text('About',
+                      style: TextStyle(color: Colors.brown),),
+
+                  ),
+                ),
+              ],
+            ),
+
+            const Padding(
+              padding:  EdgeInsets.only(left: 25.0,bottom: 25.0),
+              child: ListTile(
+                leading: Icon(
+                  Icons.logout,
+                  color: Colors.brown,
+                ),
+                title: Text('Logout',
+                  style: TextStyle(color: Colors.brown),),
+
+              ),
+            ),
+
+          ],
+        ),
+      ),
+
       body: _pages[_selectedIndex],
     );
   }
